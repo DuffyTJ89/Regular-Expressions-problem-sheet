@@ -13,6 +13,10 @@ func ElizaResponse(input string) string {
 		return "why don't you tell me more about your father?"
 	}
 
+	re := regexp.MustCompile("I am ([^.!?]*)[.!?]?")
+	if re.MatchString(input) {
+		return re.ReplaceAllString(input, "How do you know you are $1?")
+	}
 	rand.Seed(42)
 	answers := []string{
 		"I’m not sure what you’re trying to say. Could you explain it to me?",
@@ -45,4 +49,9 @@ func main() {
 	fmt.Println("Input: " + "My grandfather was French!")
 	fmt.Println("Output: " + ElizaResponse("My grandfather was French!"))
 	fmt.Println()
+
+	fmt.Println("Input: " + "I am happy ")
+	fmt.Println("Input: " + "I am not happy with your responses ")
+	fmt.Println("Input: " + "I am not sure that you understand the effect that your questions are having on me ")
+	fmt.Println("Input: " + "I am supposed to just take what you’re saying at face value? ")
 }
