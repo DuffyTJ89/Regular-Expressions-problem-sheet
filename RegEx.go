@@ -3,10 +3,15 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"regexp"
 	"time"
 )
 
 func ElizaResponse(input string) string {
+
+	if matched, _ := regexp.MatchString(`(?!).*\bfather\b.*`, input); matched {
+		return "why don't you tell me more about your father?"
+	}
 
 	rand.Seed(42)
 	answers := []string{
